@@ -1,0 +1,54 @@
+
+
+## Inicio de Estructura
+remediosingluten/
+│
+├── index.html                  # Página principal (Home + Buscador unificado)
+│
+├── frontend/
+│   ├── pages/                  # Vistas principales del sitio
+│   │   ├── nosotros.html
+│   │   ├── informacion.html    # Silo médico/farmacológico
+│   │   ├── comunidad.html      # Silo estilo de vida/negocios/recetas
+│   │   ├── contacto.html
+│   │   ├── cookies.html
+│   │   ├── privacidad.html
+│   │   ├── admin.html			# Adminitracion de base de datos
+│   │   └── responsabilidad-medica.html
+│   │
+│   ├── components/             # Fragmentos HTML reutilizables
+│   │   ├── header.php
+│   │   ├── footer.php
+│   │   ├── buscador-form.php  # Formulario aislado si se usa en varias páginas
+│   │   ├── cookie-banner.php  # Banner de consentimiento
+│   │   └── ads-banner.php    # Contenedor de publicidad nativa
+│   │
+│   ├── css/                    # Arquitectura de estilos
+│   │   ├── main.css            # Importa los demás archivos (o estilos generales base)
+│   │   ├── variables.css       # Paleta de colores, tipografías, espaciados
+│   │   ├── layout.css          # Estructura grid/flexbox
+│   │   ├── components.css      # Estilos de botones, tarjetas, header y footer
+│   │   ├── accesibilidad.css   # Reglas WCAG 2.2 (focus-visible, alto contraste)
+│   │   └── adsense.css         # Reservas de espacio (min-height) para evitar CLS
+│   │
+│   ├── js/                     # Lógica de la interfaz
+│   │   ├── main.js             # Inicialización y controladores generales
+│   │   ├── components.js       # Funciones asíncronas (fetch) para inyectar header/footer
+│   │   ├── search.js           # Lógica del frontend que llama a la API del buscador
+│   │   └── accesibilidad.js    # Gestión dinámica de atributos ARIA y foco de teclado
+│   │
+│   └── assets/                 # Archivos estáticos
+│       ├── img/
+│       ├── icons/
+│       └── fonts/
+│
+└── backend/                    # Lógica del servidor y base de datos
+    ├── config/
+    │   └── db.php              # Conexión a la base de datos SQL
+    │
+    ├── api/                    # Endpoints que el frontend consume vía fetch()
+    │   ├── buscar.php          # Recibe el término y devuelve resultados en JSON
+    │   └── procesar_contacto.php 
+    │
+    └── utils/
+        └── automations.php     # Disparadores de webhooks (ej. conexión con make.com)

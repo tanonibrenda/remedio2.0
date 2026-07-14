@@ -1,0 +1,23 @@
+/* En layout.css o variables.css */
+.header-placeholder {
+  min-height: 80px; /* Misma altura que el header final */
+  background-color: var(--color-primary);
+}
+
+/* En adsense.css */
+.ads-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 970px;
+  min-height: 250px; /* Reserva vital para evitar que el contenido salte */
+  background-color: #e0e0e0; /* Color temporal o transparente */
+}
+
+@media (max-width: 768px) {
+  .ads-container {
+    min-height: 100px; /* Tamaño típico de banners móviles */
+  }
+}

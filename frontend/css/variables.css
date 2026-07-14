@@ -1,0 +1,150 @@
+:root {
+  --color-primary: #2E3E50;
+  --color-accent: #5BB063;
+  --color-bg-main: #F5F7FA;
+  --color-text-main: #1A1A1A;
+  --color-focus: #FF5722; /* Color de alto contraste para el foco */
+  
+  --header-height: 80px;
+  --a11y-bar-height: 48px;
+}
+
+/* Modo oscuro (aplicado al body) */
+body.dark-mode {
+  --color-bg-main: #121212;
+  --color-text-main: #F5F7FA;
+  --color-primary: #1A242F;
+}
+
+/* Reset de foco accesible global (WCAG 2.2 AAA) */
+*:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* Clase para ocultar texto visualmente pero mantenerlo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* --- Header Styles --- */
+#main-header {
+  background-color: var(--color-primary);
+  color: var(--color-bg-main);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: calc(var(--header-height) + var(--a11y-bar-height)); /* Prevención CLS */
+}
+
+.a11y-toolbar {
+  background-color: #1A242F;
+  padding: 0.25rem 1rem;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+/* Botones con Target Size AAA (44x44 mínimo) */
+.btn-a11y, .menu-toggle, .a11y-panel button {
+  min-width: 44px;
+  min-height: 44px;
+  background: transparent;
+  border: 2px solid transparent;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle {
+  background-color: var(--color-accent);
+  border-radius: 4px;
+}
+
+/* Panel de accesibilidad */
+.a11y-panel {
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  background-color: var(--color-bg-main);
+  border: 1px solid var(--color-primary);
+  border-radius: 0 0 8px 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.a11y-panel button {
+  background-color: var(--color-primary);
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-nav {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--color-primary);
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link {
+  display: block;
+  padding: 1rem;
+  color: var(--color-bg-main);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  min-height: 44px; /* Target Size */
+}
+
+/* Breakpoint para Tablets/Desktop */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+  
+  .main-nav {
+    display: block !important;
+    position: static;
+    width: auto;
+  }
+  
+  .nav-list {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    border-bottom: none;
+    padding: 0.5rem;
+  }
+}

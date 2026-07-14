@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Remedios Sin Gluten | Buscador Accesible</title>
+  <meta name="description" content="Buscador unificado de medicamentos sin gluten en Argentina. Información médica segura y verificada.">
+  
+  <link rel="stylesheet" href="frontend/css/variables.css">
+  <link rel="stylesheet" href="frontend/css/layout.css">
+  <link rel="stylesheet" href="frontend/css/components.css">
+  <link rel="stylesheet" href="frontend/css/accesibilidad.css">
+  <link rel="stylesheet" href="frontend/css/adsense.css">
+</head>
+<body>
+
+  <header id="main-header" class="header-placeholder"></header>
+
+  <main id="main-content">
+    
+    <section class="search-section">
+      <div class="container">
+        <h1>Encontrá tu medicamento sin gluten</h1>
+        
+        <form id="search-form" class="search-form" role="search">
+          <label for="search-input">Buscar por nombre comercial o principio activo</label>
+          <div class="input-group">
+            <input type="search" id="search-input" name="q" placeholder="Ej. Ibuprofeno..." required aria-required="true">
+            <button type="submit" class="btn-primary">Buscar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <aside class="ads-container ads-top" aria-label="Publicidad">
+       </aside>
+
+    <section id="results-container" class="container" aria-live="polite">
+      </section>
+
+  </main>
+
+  <footer id="main-footer" class="footer-placeholder"></footer>
+
+  <script src="frontend/js/components.js"></script>
+  <script src="frontend/js/main.js"></script>
+  <script src="frontend/js/search.js"></script>
+  <script src="frontend/js/accesibilidad.js"></script>
+</body>
+</html>
