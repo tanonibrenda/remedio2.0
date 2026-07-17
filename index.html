@@ -3,22 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remedios Sin Gluten | Buscador Unificado de Medicamentos en Argentina</title>
+  <meta name="description" content="Buscador unificado y accesible de medicamentos sin gluten (TACC) en Argentina. Información médica segura y verificada.">
+  <link rel="stylesheet" href="frontend/css/style.css">
   
-  <title>Remedios Sin Gluten | Buscador Accesible</title>
-  <meta name="description" content="Buscador unificado de medicamentos sin gluten en Argentina. Información médica segura y verificada.">
-  
-  <link rel="stylesheet" href="frontend/css/variables.css">
-  <link rel="stylesheet" href="frontend/css/layout.css">
-  <link rel="stylesheet" href="frontend/css/components.css">
-  <link rel="stylesheet" href="frontend/css/accesibilidad.css">
-  <link rel="stylesheet" href="frontend/css/adsense.css">
+  <link rel="preload" href="frontend/css/style.css" as="style">
 </head>
 <body>
 
   <header id="main-header" class="header-placeholder"></header>
 
   <main id="main-content">
-    
     <section class="search-section">
       <div class="container">
         <h1>Encontrá tu medicamento sin gluten</h1>
@@ -34,18 +29,18 @@
     </section>
 
     <aside class="ads-container ads-top" aria-label="Publicidad">
-       </aside>
+       <div class="ad-placeholder" style="min-width: 320px; min-height: 100px;">
+         </div>
+    </aside>
 
     <section id="results-container" class="container" aria-live="polite">
-      </section>
-
+       </section>
   </main>
 
   <footer id="main-footer" class="footer-placeholder"></footer>
 
-  <script src="frontend/js/components.js"></script>
-  <script src="frontend/js/main.js"></script>
-  <script src="frontend/js/search.js"></script>
-  <script src="frontend/js/accesibilidad.js"></script>
+  <script src="frontend/js/components.js" defer></script>
+  <script src="frontend/js/accesibilidad.js" defer></script>
+  <script src="frontend/js/search.js" defer></script>
 </body>
 </html>

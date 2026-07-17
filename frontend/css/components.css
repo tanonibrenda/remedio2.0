@@ -1,3 +1,7 @@
+/* =========================================
+   VARIABLES GLOBALES Y RESET ACCESIBLE
+   ========================================= */
+/* Nota: Si ya tenés estas variables en variables.css, podés omitir este bloque :root */
 :root {
   --color-primary: #2E3E50;
   --color-accent: #5BB063;
@@ -9,20 +13,14 @@
   --a11y-bar-height: 48px;
 }
 
-/* Modo oscuro (aplicado al body) */
-body.dark-mode {
-  --color-bg-main: #121212;
-  --color-text-main: #F5F7FA;
-  --color-primary: #1A242F;
-}
-
-/* Reset de foco accesible global (WCAG 2.2 AAA) */
+/* Reset de foco accesible global (WCAG 2.2 AAA - 2.4.13 Focus Appearance) */
 *:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
+  border-radius: 2px;
 }
 
-/* Clase para ocultar texto visualmente pero mantenerlo para lectores de pantalla */
+/* Ocultar texto visualmente pero mantenerlo para lectores de pantalla */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -34,26 +32,42 @@ body.dark-mode {
   border: 0;
 }
 
-/* --- Header Styles --- */
+/* =========================================
+   COMPONENTES: PLACEHOLDERS (Prevención CLS)
+   ========================================= */
+.header-placeholder {
+  min-height: calc(var(--header-height) + var(--a11y-bar-height));
+  background-color: var(--color-primary);
+}
+
+.footer-placeholder {
+  min-height: 400px;
+  background-color: var(--color-primary);
+}
+
+/* =========================================
+   COMPONENTES: HEADER Y BARRA DE ACCESIBILIDAD
+   ========================================= */
 #main-header {
   background-color: var(--color-primary);
   color: var(--color-bg-main);
   position: sticky;
   top: 0;
   z-index: 1000;
-  min-height: calc(var(--header-height) + var(--a11y-bar-height)); /* Prevención CLS */
 }
 
 .a11y-toolbar {
-  background-color: #1A242F;
+  background-color: #1A242F; /* Tono más oscuro para diferenciar de la barra principal */
   padding: 0.25rem 1rem;
   display: flex;
   justify-content: flex-end;
   position: relative;
 }
 
-/* Botones con Target Size AAA (44x44 mínimo) */
-.btn-a11y, .menu-toggle, .a11y-panel button {
+/* Áreas táctiles mínimas (WCAG 2.5.5 Target Size AAA: 44x44px) */
+.btn-a11y, 
+.menu-toggle, 
+.a11y-panel button {
   min-width: 44px;
   min-height: 44px;
   background: transparent;
@@ -63,14 +77,20 @@ body.dark-mode {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .menu-toggle {
   background-color: var(--color-accent);
   border-radius: 4px;
+  color: #1A1A1A; /* Texto oscuro para contrastar con el fondo verde acento */
+  font-weight: bold;
 }
 
-/* Panel de accesibilidad */
+/* =========================================
+   COMPONENTES: PANEL DE ACCESIBILIDAD
+   ========================================= */
 .a11y-panel {
   position: absolute;
   top: 100%;
@@ -83,18 +103,32 @@ body.dark-mode {
   flex-direction: column;
   gap: 0.5rem;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  min-width: 200px;
 }
-/* Fuerza a ocultar el panel cuando tiene el atributo hidden */
+
+/* Fuerza a ocultar el panel cuando tiene el atributo hidden (soporte mejorado) */
 .a11y-panel[hidden] {
   display: none !important;
 }
 
 .a11y-panel button {
   background-color: var(--color-primary);
+  color: var(--color-bg-main);
   width: 100%;
   padding: 0 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
+.a11y-panel button:hover,
+.a11y-panel button:focus-visible {
+  background-color: var(--color-accent);
+  color: #1A1A1A;
+}
+
+/* =========================================
+   COMPONENTES: NAVEGACIÓN PRINCIPAL
+   ========================================= */
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -112,6 +146,10 @@ body.dark-mode {
   background-color: var(--color-primary);
 }
 
+.main-nav[hidden] {
+  display: none !important;
+}
+
 .nav-list {
   list-style: none;
   padding: 0;
@@ -121,17 +159,127 @@ body.dark-mode {
 }
 
 .nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 1rem;
-  color:#F5F7FA;;
+  color: #F5F7FA;
   text-decoration: none;
   font-weight: 500;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  min-height: 44px; /* Target Size */
+  min-height: 44px; /* Target Size AAA */
 }
 
-/* Breakpoint para Tablets/Desktop */
+.nav-link:hover,
+.nav-link:focus-visible {
+  background-color: rgba(255,255,255,0.05);
+  color: var(--color-accent);
+}
+
+/* =========================================
+   COMPONENTES: BOTONES GENERALES
+   ========================================= */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #1A1A1A;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  min-height: 44px;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  filter: brightness(1.1);
+}
+
+/* =========================================
+   COMPONENTES: FOOTER (Mobile First & Reflow Safe)
+   ========================================= */
+#main-footer {
+  background-color: var(--color-primary);
+  color: #F5F7FA; /* Color fijo para asegurar contraste en modo claro y oscuro */
+  padding: 3rem 1rem 1rem;
+  margin-top: 4rem; 
+  border-top: 4px solid var(--color-accent);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Reflow: Columna única nativa en mobile */
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  color: #F5F7FA; /* Color fijo */
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer-links a {
+  color: #F5F7FA; /* Color fijo */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* Target Size AAA */
+  padding: 0.25rem 0;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(245, 247, 250, 0.1);
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.footer-bottom a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-bottom a:hover,
+.footer-bottom a:focus-visible {
+  color: #fff;
+}
+
+/* =========================================
+   MEDIA QUERIES (TABLET Y DESKTOP)
+   ========================================= */
+
 @media (min-width: 768px) {
+  /* Header: Adaptación a Desktop */
   .menu-toggle {
     display: none;
   }
@@ -140,6 +288,7 @@ body.dark-mode {
     display: block !important;
     position: static;
     width: auto;
+    background-color: transparent;
   }
   
   .nav-list {
@@ -150,5 +299,30 @@ body.dark-mode {
   .nav-link {
     border-bottom: none;
     padding: 0.5rem;
+  }
+
+  /* Footer: Refluye a 2 columnas en Tablet */
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-section {
+    grid-column: span 2; 
+  }
+}
+
+@media (min-width: 900px) {
+  /* Footer: Refluye a 3 columnas en Desktop */
+  .footer-placeholder {
+    min-height: 250px;
+  }
+  
+  .footer-container {
+    grid-template-columns: 2fr 1fr 1fr; 
+  }
+  
+  .footer-section {
+    grid-column: span 1;
+    padding-right: 2rem;
   }
 }

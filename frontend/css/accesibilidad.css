@@ -1,0 +1,111 @@
+/* =========================================
+   ACCESIBILIDAD DIGITAL (WCAG 2.2 AAA)
+   ========================================= */
+
+/* 1. Escalado Dinámico de Texto (WCAG 1.4.4 Resize text) */
+:root {
+  /* Esta variable es modificada en tiempo real por accesibilidad.js */
+  --base-font-size: 100%; 
+}
+
+html {
+  /* Permite escalar toda la interfaz basada en rems */
+  font-size: var(--base-font-size);
+  /* Transición suave para evitar mareos al cambiar el tamaño */
+  transition: font-size 0.3s ease-in-out;
+}
+
+/* 2. Respeto por las Preferencias del Sistema (WCAG 2.3.3 Animation from Interactions) */
+/* Si el usuario tiene configurado su sistema operativo para reducir el movimiento,
+   desactivamos todas las animaciones y transiciones de golpe. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html {
+    transition: none !important;
+  }
+}
+
+/* 3. Utilidad: Screen Reader Only (Oculto visualmente, disponible para lectores) */
+/* Esta clase se usa para etiquetas de navegación, live regions y títulos contextuales */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* 4. Indicadores de Foco de Alto Contraste (WCAG 2.4.13 Focus Appearance) */
+/* Refuerzo global para asegurar que NINGÚN elemento interactivo pierda su foco */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 3px solid #FF5722 !important; /* Naranja de alto contraste */
+  outline-offset: 3px !important;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.2); /* Halo extra para mayor visibilidad */
+}
+
+/* 5. Utilidad: Live Region para Alertas (Usado en main.js) */
+#a11y-live-region {
+  /* Se hereda de .sr-only, pero nos aseguramos de que no altere el layout */
+  display: block;
+}
+
+/* 6. Soporte para Modo de Alto Contraste Nativo (Windows High Contrast Mode) */
+@media (forced-colors: active) {
+  /* Cuando el usuario fuerza colores en su SO, eliminamos sombras y fondos
+     que puedan interferir con la legibilidad estricta. */
+  .a11y-panel,
+  #main-header,
+  #main-footer {
+    border: 2px solid CanvasText; /* Borde dinámico según el tema del SO */
+  }
+  
+  .btn-primary,
+  .menu-toggle {
+    border: 2px solid ButtonText;
+  }
+  
+  *:focus-visible {
+    outline: 4px solid Highlight !important;
+  }
+}
+
+/* 7. Modo Oscuro Global: Variables Base */
+/* Se activa cuando el body recibe la clase .dark-mode desde accesibilidad.js */
+body.dark-mode {
+  --color-bg-main: #121212;
+  --color-text-main: #E0E0E0; /* Gris muy claro para evitar el #FFF puro que cansa la vista */
+  --color-primary: #1A242F;
+}
+
+body.dark-mode {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+/* Reducción de brillo en imágenes en modo oscuro para evitar deslumbramientos */
+body.dark-mode img {
+  filter: brightness(0.85) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+body.dark-mode img:hover {
+  filter: brightness(1) contrast(1); /* Restaura al hacer hover si el usuario quiere ver detalles */
+}

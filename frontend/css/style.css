@@ -1,0 +1,301 @@
+:root {
+  --base-font-size: 100%; 
+  --color-primary: #2E3E50;
+  --color-accent: #5BB063;
+  --color-bg-main: #F5F7FA;
+  --color-text-main: #1A1A1A;
+  --color-focus: #FF5722; 
+  --header-height: 80px;
+  --a11y-bar-height: 48px;
+}
+
+body.dark-mode {
+  --color-bg-main: #121212;
+  --color-text-main: #E0E0E0; 
+  --color-primary: #1A242F;
+}
+
+html {
+  font-size: var(--base-font-size);
+  transition: font-size 0.3s ease-in-out;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+}
+
+/* Indicadores de Foco WCAG 2.4.13 */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--color-focus) !important;
+  outline-offset: 3px !important;
+}
+
+.container {
+  width: 90%; max-width: 1200px; margin: 0 auto; padding: 2rem 0;
+}
+
+/* Prevención CLS */
+.header-placeholder {
+  min-height: calc(var(--header-height) + var(--a11y-bar-height));
+  background-color: var(--color-primary);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #1A1A1A;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  min-height: 44px; /* Target Size AAA */
+  cursor: pointer;
+}
+
+/* =========================================
+   HEADER STYLES (Ajustado para Reflujo WCAG 1.4.10)
+   ========================================= */
+
+#main-header {
+  background-color: var(--color-primary);
+  color: #F5F7FA;
+  /* Cambio clave: Usamos position relative por defecto. 
+     Así fluye con el documento en zoom alto (400%) o móviles pequeños, 
+     evitando que tape el contenido de la búsqueda de medicamentos. */
+  position: relative; 
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Sutil separación visual */
+}
+/* Previene saltos bruscos (CLS) ajustando la altura en móvil */
+.header-placeholder {
+  min-height: 90px; /* Altura estimada más compacta para móvil */
+  background-color: var(--color-primary);
+}
+.a11y-toolbar {
+  background-color: #1A242F;
+  /* Reducimos el padding vertical al mínimo necesario */
+  padding: 0.15rem 1rem; 
+  display: flex; 
+  justify-content: flex-end;
+  position: relative;
+}
+.header-container {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  /* Reducimos el padding vertical en móvil para ganar espacio de lectura */
+  padding: 0.5rem 1rem; 
+}
+
+/* Ajuste del logo para que no expanda el header innecesariamente en móvil */
+.logo-link img {
+  height: 40px; 
+  width: auto;
+  display: block;
+}
+/* Botones mínimos AAA (44x44px) */
+.btn-a11y, .menu-toggle {
+  min-width: 44px; min-height: 44px;
+  background: transparent; border: none; color: #fff; cursor: pointer;
+}
+
+.menu-toggle {
+  background-color: var(--color-accent); color: #1A1A1A; font-weight: bold; border-radius: 4px;
+}
+
+.a11y-panel {
+  position: absolute; top: 100%; right: 1rem;
+  background-color: var(--color-bg-main);
+  border: 1px solid var(--color-primary);
+  padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem;
+}
+
+.a11y-panel[hidden] { display: none !important; }
+
+.header-container {
+  display: flex; justify-content: space-between; align-items: center; padding: 1rem;
+}
+
+/* Lógica del Nav Mobile */
+.main-nav {
+  width: 100%; position: absolute; top: 100%; left: 0;
+  background-color: var(--color-primary);
+}
+.main-nav[hidden] { display: none !important; }
+
+.nav-list { list-style: none; display: flex; flex-direction: column; }
+.nav-link {
+  display: flex; align-items: center; padding: 1rem;
+  color: #F5F7FA; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1);
+  min-height: 44px;
+}
+
+.search-section { text-align: center; padding: 3rem 0; }
+.search-section h1 { color: var(--color-primary); margin-bottom: 1.5rem; }
+body.dark-mode .search-section h1 { color: var(--color-accent); }
+
+.search-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; }
+.search-form label { text-align: left; font-weight: 500; }
+.input-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.input-group input { flex: 1; min-width: 250px; padding: 0.75rem 1rem; border: 2px solid var(--color-primary); }
+
+.ads-container {
+  background-color: rgba(0,0,0,0.05); display: flex; justify-content: center;
+  align-items: center; margin: 2rem auto; overflow: hidden;
+}
+
+/* ====== MEDIA QUERIES ====== */
+@media (min-width: 768px) {
+  .menu-toggle { display: none; }
+  
+  /* AQUÍ ESTÁ LA SOLUCIÓN AL BUG */
+  .main-nav, .main-nav[hidden] {
+    display: block !important; /* Vence al hidden en pantallas grandes */
+    position: static;
+    width: auto;
+    background-color: transparent;
+  }
+  
+  .nav-list { flex-direction: row; gap: 1.5rem; }
+  .nav-link { border-bottom: none; padding: 0.5rem; }
+}
+@media (min-width: 768px) and (min-height: 600px) {
+  #main-header {
+    position: sticky; 
+    top: 0;
+  }
+  
+  .header-placeholder {
+    min-height: 128px; /* Altura original en desktop */
+  }
+
+  .header-container {
+    padding: 1rem; /* Restauramos el respiro visual en pantallas grandes */
+  }
+
+  .logo-link img {
+    height: 50px; /* Tamaño original del logo */
+  }
+}
+
+/* =========================================
+   FOOTER STYLES (Versión Mejorada y Accesible)
+   ========================================= */
+
+#main-footer {
+  background-color: var(--color-primary); /* Azul oscuro #2E3E50 */
+  color: #F5F7FA;
+  padding-top: 4rem; 
+  margin-top: 4rem;
+  font-size: 0.95rem;
+}
+
+/* Usamos CSS Grid para una estructura perfecta */
+.footer-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr; /* 1 columna en móviles */
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-top: 1rem;
+  max-width: 60ch; /* Limita el ancho del texto para mejor legibilidad */
+}
+
+.footer-title {
+  color: var(--color-accent); /* Verde accesible #5BB063 */
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Limpieza de listas (adiós viñetas) */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Enlaces de navegación con contraste corregido */
+.footer-links a {
+  color: #F5F7FA; /* Sobrescribe el azul por defecto */
+  text-decoration: none;
+  min-height: 44px; /* WCAG AAA Target Size para pantallas táctiles */
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+  padding: 0.25rem 0; /* Área de clic más cómoda */
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Barra inferior (Copyright y Créditos) */
+.footer-bottom {
+  background-color: rgba(0, 0, 0, 0.15); /* Fondo sutilmente más oscuro para separar */
+  border-top: 1px solid rgba(245, 247, 250, 0.1);
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Resaltar la autoría con buen contraste */
+.footer-bottom a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.footer-bottom a:hover,
+.footer-bottom a:focus-visible {
+  background-color: var(--color-accent);
+  color: var(--color-primary); /* Texto oscuro sobre fondo verde al hacer hover */
+}
+
+/* ====== MEDIA QUERIES (Tablet y Desktop) ====== */
+@media (min-width: 768px) {
+  .footer-container {
+    /* En pantallas grandes: 
+       Columna 1: Ocupa el doble de espacio (Texto legal largo)
+       Columna 2: Navegación
+       Columna 3: Políticas */
+    grid-template-columns: 2fr 1fr 1fr; 
+    gap: 3rem;
+  }
+}
