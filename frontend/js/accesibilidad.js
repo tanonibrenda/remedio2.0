@@ -34,11 +34,15 @@ document.addEventListener('componentsLoaded', () => {
     }
 
     // --- Lógica del Modo Oscuro ---
+// --- Lógica del Modo Oscuro ---
     const btnDarkMode = document.getElementById('btn-dark-mode');
     if (btnDarkMode) {
-        // Establecer el estado inicial del botón (aria-pressed) basado en si la clase ya se aplicó en initPreferences()
+        // Establecer el estado inicial
         const isDarkModeOnLoad = document.body.classList.contains('dark-mode');
         btnDarkMode.setAttribute('aria-pressed', isDarkModeOnLoad);
+        
+        // Cargar el texto correcto desde el inicio
+        btnDarkMode.textContent = isDarkModeOnLoad ? 'Modo Claro' : 'Modo Oscuro';
 
         btnDarkMode.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -47,7 +51,10 @@ document.addEventListener('componentsLoaded', () => {
             // Actualizar estado dinámico para lectores de pantalla
             btnDarkMode.setAttribute('aria-pressed', isDarkMode);
             
-            // Guardar preferencia del usuario en su navegador
+            // Alternar el texto del botón según el modo activo
+            btnDarkMode.textContent = isDarkMode ? 'Modo Claro' : 'Modo Oscuro';
+            
+            // Guardar preferencia
             localStorage.setItem('rsg-dark-mode', isDarkMode);
         });
     }
