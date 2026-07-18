@@ -3,42 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Remedios Sin Gluten | Buscador Unificado de Medicamentos en Argentina</title>
+  <title>Remedios Sin Gluten</title>
   <meta name="description" content="Buscador unificado y accesible de medicamentos sin gluten (TACC) en Argentina. Información médica segura y verificada.">
   <link rel="stylesheet" href="frontend/css/style.css">
-  
   <link rel="preload" href="frontend/css/style.css" as="style">
 </head>
 <body>
 
+  <!-- Contenedor inyectado por components.js -->
   <header id="main-header" class="header-placeholder"></header>
 
-  <main id="main-content">
-    <section class="search-section">
-      <div class="container">
-        <h1>Encontrá tu medicamento sin gluten</h1>
+  <main id="main-content" class="fade-in">
+    <!-- ==========================================
+         1. SECCIÓN DE BÚSQUEDA (HERO) DIVIDIDA
+         ========================================== -->
+    <section id="seccion-buscador" class="search-section" aria-labelledby="hero-title">
+      <div class="container hero-container">
         
-        <form id="search-form" class="search-form" role="search">
-          <label for="search-input">Buscar por nombre comercial o principio activo</label>
+        <div class="hero-top-layout">
+          <div class="hero-image-wrapper">
+            <!-- GRUPO DE IMÁGENES: MODO CLARO -->
+            <picture class="img-light-mode">
+              <source media="(min-width: 1024px)" srcset="frontend/assets/img/RSG_Escritorio_claro.webp">
+              <source media="(min-width: 768px)" srcset="frontend/assets/img/RSG_Tablat_claro.webp">
+              <img src="frontend/assets/img/RSG_mobile_claro.webp" 
+                  alt="Estantería de farmacia con múltiples medicamentos desenfocados, destacando en el centro un envase nítido con el logo oficial de medicamento libre de gluten." 
+                  class="hero-img-responsive" 
+                  width="900" height="500" fetchpriority="high">
+            </picture>
+
+            <!-- GRUPO DE IMÁGENES: MODO OSCURO -->
+            <picture class="img-dark-mode" aria-hidden="true">
+              <source media="(min-width: 1024px)" srcset="frontend/assets/img/RSG_Escritorio_Osc.webp">
+              <source media="(min-width: 768px)" srcset="frontend/assets/img/RSG_Tablat_oscuro.webp">
+              <img src="frontend/assets/img/RSG_mobile_oscuro.webp" 
+                  alt="" 
+                  class="hero-img-responsive" 
+                  width="900" height="500" loading="lazy">
+            </picture>
+          </div>
+          <div class="hero-title-wrapper">
+            <h1 id="hero-title" class="hero-title">Remedio sin gluten</h1>
+          </div>
+        </div>
+
+        <div class="hero-bottom-layout">
+          <p class="hero-subtitle">Búsqueda rápida, segura y libre de gluten.</p>
+          
+          <form id="formulario-busqueda" class="search-form" role="search">
+            <label for="buscador" class="sr-only">Buscador de medicamentos aptos</label>
+            <div class="input-group">
+              <span class="search-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </span>
+              <input type="search" id="buscador" name="q" placeholder="Ej: Ibuprofeno, Tafirol..." required aria-describedby="ayuda-buscador" autocomplete="off">
+              <button type="submit" class="btn-primary">Consultar</button>
+            </div>
+          </form>
+          <p id="ayuda-buscador" class="sr-only">Escribe el término y presiona Enter o el botón Consultar para ver si es libre de gluten.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         2. ESPACIO ADSENSE SUPERIOR (Prevención CLS)
+         ========================================== -->
+    <aside class="ads-container ads-top" aria-label="Publicidad patrocinada">
+       <div class="ad-placeholder-box">
+           <!-- Código de AdSense aquí -->
+           <span class="sr-only">Anuncio publicitario</span>
+       </div>
+    </aside>
+
+    <!-- ==========================================
+         3. CONTENEDORES DE RESULTADOS
+         ========================================== -->
+    <div id="anuncio-resultados" aria-live="assertive" class="sr-only"></div>
+    <section id="contenedor-resultados" class="container results-area" role="region" aria-label="Resultados de la búsqueda" tabindex="-1"></section>
+
+    <!-- ==========================================
+         4. ESPACIO ADSENSE INFERIOR
+         ========================================== -->
+    <aside class="ads-container ads-bottom" aria-label="Publicidad patrocinada">
+       <div class="ad-placeholder-box">
+           <!-- Código de AdSense aquí -->
+           <span class="sr-only">Anuncio publicitario</span>
+       </div>
+    </aside>
+
+    <!-- ==========================================
+         5. SECCIÓN E-E-A-T Y SEO
+         ========================================== -->
+    <section class="info-seo-section container" aria-labelledby="seo-title">
+      <div class="info-grid">
+        <div class="info-card">
+          <h2 id="seo-title" class="h3-style">Rigor y transparencia en cada consulta</h2>
+          <p>Nuestra base de datos procesa y cruza información oficial para brindar respuestas claras. La verificación constante asegura que los pacientes y profesionales tengan acceso a datos actualizados sobre excipientes y trazabilidad de los principios activos, reduciendo el riesgo de exposición al gluten.</p>
+        </div>
+        <div class="info-card">
+          <h3 class="h3-style">Herramienta de asistencia</h3>
+          <p>Diseñada bajo estrictos estándares de accesibilidad digital (WCAG 2.2), esta plataforma agiliza la toma de decisiones en el mostrador o en el consultorio. <strong>Recordá:</strong> esta consulta no reemplaza el criterio profesional ni la lectura del prospecto vigente.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         6. SECCIÓN SPONSORS DIRECTOS
+         ========================================== -->
+    <section class="sponsors-section bg-light" aria-labelledby="sponsors-title">
+      <div class="container text-center">
+        <h2 id="sponsors-title">Marcas aliadas de la comunidad</h2>
+        <p class="sr-only">Lista de empresas e instituciones que patrocinan este proyecto.</p>
+        <ul class="sponsors-list">
+          <li class="sponsor-item"><a href="#" aria-label="Visitar sitio de Sponsor 1"><div class="sponsor-placeholder">Espacio Sponsor 1</div></a></li>
+          <li class="sponsor-item"><a href="#" aria-label="Visitar sitio de Sponsor 2"><div class="sponsor-placeholder">Espacio Sponsor 2</div></a></li>
+          <li class="sponsor-item"><a href="#" aria-label="Visitar sitio de Sponsor 3"><div class="sponsor-placeholder">Espacio Sponsor 3</div></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         7. CAPTACIÓN DE LEADS
+         ========================================== -->
+    <section class="newsletter-section container" aria-labelledby="newsletter-title">
+      <div class="newsletter-box">
+        <div class="newsletter-content">
+          <h2 id="newsletter-title">Alertas de actualización</h2>
+          <p>Suscribite para recibir notificaciones sobre cambios en las fórmulas de los laboratorios y nuevos medicamentos aptos incorporados al sistema.</p>
+        </div>
+        <form class="newsletter-form" action="procesar_suscripcion.php" method="POST">
+          <label for="email-alerta" class="sr-only">Tu correo electrónico</label>
           <div class="input-group">
-            <input type="search" id="search-input" name="q" placeholder="Ej. Ibuprofeno..." required aria-required="true">
-            <button type="submit" class="btn-primary">Buscar</button>
+            <input type="email" id="email-alerta" name="email" placeholder="tu@email.com" required aria-required="true" autocomplete="email">
+            <button type="submit" class="btn-primary btn-newsletter">Suscribirme</button>
           </div>
         </form>
       </div>
     </section>
 
-    <aside class="ads-container ads-top" aria-label="Publicidad">
-       <div class="ad-placeholder" style="min-width: 320px; min-height: 100px;">
-         </div>
-    </aside>
-
-    <section id="results-container" class="container" aria-live="polite">
-       </section>
   </main>
-
+  
+  <!-- Contenedor inyectado por components.js -->
   <footer id="main-footer" class="footer-placeholder"></footer>
 
+  <!-- Scripts modulares respetando la estructura solicitada -->
   <script src="frontend/js/components.js" defer></script>
   <script src="frontend/js/accesibilidad.js" defer></script>
   <script src="frontend/js/search.js" defer></script>

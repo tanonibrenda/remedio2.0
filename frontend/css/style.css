@@ -1,14 +1,23 @@
+@charset "UTF-8";
+
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
 :root {
+  /* Tipografía y espaciado */
   --base-font-size: 100%; 
-  --color-primary: #2E3E50;
-  --color-accent: #5BB063;
-  --color-bg-main: #F5F7FA;
-  --color-text-main: #1A1A1A;
-  --color-focus: #FF5722; 
   --header-height: 80px;
   --a11y-bar-height: 48px;
+
+  /* Paleta de colores - Modo Claro */
+  --color-primary: #2E3E50; /* Azul oscuro corporativo */
+  --color-accent: #5BB063;  /* Verde accesible para contrastes */
+  --color-bg-main: #F5F7FA; /* Fondo optimizado para dislexia (evita el blanco puro) */
+  --color-text-main: #1A1A1A; /* Texto principal de alto contraste */
+  --color-focus: #FF5722;   /* Color vibrante para el indicador de foco del teclado */
 }
 
+/* Paleta de colores - Modo Oscuro */
 body.dark-mode {
   --color-bg-main: #121212;
   --color-text-main: #E0E0E0; 
@@ -19,6 +28,7 @@ html {
   font-size: var(--base-font-size);
   transition: font-size 0.3s ease-in-out;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *, *::before, *::after {
@@ -35,28 +45,23 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Screen Reader Only */
+/* =========================================
+   2. ACCESIBILIDAD DIGITAL (WCAG 2.2 A/AA/AAA)
+   ========================================= */
+
+/* Ocultar visualmente pero mantener disponible para lectores de pantalla */
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
 }
 
-/* Indicadores de Foco WCAG 2.4.13 */
+/* Indicadores de Foco Perceptibles (WCAG 2.4.13) */
 a:focus-visible, button:focus-visible, input:focus-visible {
   outline: 3px solid var(--color-focus) !important;
   outline-offset: 3px !important;
 }
 
-.container {
-  width: 90%; max-width: 1200px; margin: 0 auto; padding: 2rem 0;
-}
-
-/* Prevención CLS */
-.header-placeholder {
-  min-height: calc(var(--header-height) + var(--a11y-bar-height));
-  background-color: var(--color-primary);
-}
-
+/* Área de clic mínima para interfaces táctiles (WCAG 2.5.8 Target Size) */
 .btn-primary {
   background-color: var(--color-accent);
   color: #1A1A1A;
@@ -64,52 +69,54 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   border: 2px solid transparent;
   border-radius: 4px;
   padding: 0.75rem 1.5rem;
-  min-height: 44px; /* Target Size AAA */
+  min-height: 44px; /* Estándar AAA: Mínimo 44x44px */
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background-color: #4da054;
+}
+
+.container {
+  width: 90%; max-width: 1200px; margin: 0 auto; padding: 2rem 0;
 }
 
 /* =========================================
-   HEADER STYLES (Ajustado para Reflujo WCAG 1.4.10)
+   3. HEADER Y NAVEGACIÓN (Reflujo WCAG 1.4.10)
    ========================================= */
 
 #main-header {
   background-color: var(--color-primary);
   color: #F5F7FA;
-  /* Cambio clave: Usamos position relative por defecto. 
-     Así fluye con el documento en zoom alto (400%) o móviles pequeños, 
-     evitando que tape el contenido de la búsqueda de medicamentos. */
   position: relative; 
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Sutil separación visual */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
-/* Previene saltos bruscos (CLS) ajustando la altura en móvil */
+
+/* Previene saltos bruscos en el DOM (CLS) antes de que cargue el header dinámico */
 .header-placeholder {
-  min-height: 90px; /* Altura estimada más compacta para móvil */
+  min-height: 90px;
   background-color: var(--color-primary);
 }
+
 .a11y-toolbar {
   background-color: #1A242F;
-  /* Reducimos el padding vertical al mínimo necesario */
   padding: 0.15rem 1rem; 
   display: flex; 
   justify-content: flex-end;
   position: relative;
 }
+
 .header-container {
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  /* Reducimos el padding vertical en móvil para ganar espacio de lectura */
-  padding: 0.5rem 1rem; 
+  display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; 
 }
 
-/* Ajuste del logo para que no expanda el header innecesariamente en móvil */
 .logo-link img {
-  height: 40px; 
-  width: auto;
-  display: block;
+  height: 40px; width: auto; display: block;
 }
-/* Botones mínimos AAA (44x44px) */
+
+/* Botones de accesibilidad y menú */
 .btn-a11y, .menu-toggle {
   min-width: 44px; min-height: 44px;
   background: transparent; border: none; color: #fff; cursor: pointer;
@@ -119,54 +126,28 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   background-color: var(--color-accent); color: #1A1A1A; font-weight: bold; border-radius: 4px;
 }
 
-.a11y-panel {
-  position: absolute; top: 100%; right: 1rem;
-  background-color: var(--color-bg-main);
-  border: 1px solid var(--color-primary);
-  padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem;
-}
-
-.a11y-panel[hidden] { display: none !important; }
-
-.header-container {
-  display: flex; justify-content: space-between; align-items: center; padding: 1rem;
-}
-
-/* Lógica del Nav Mobile */
+/* Menú de navegación móvil */
 .main-nav {
   width: 100%; position: absolute; top: 100%; left: 0;
   background-color: var(--color-primary);
 }
+
 .main-nav[hidden] { display: none !important; }
 
 .nav-list { list-style: none; display: flex; flex-direction: column; }
+
 .nav-link {
   display: flex; align-items: center; padding: 1rem;
   color: #F5F7FA; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1);
-  min-height: 44px;
+  min-height: 44px; /* Target Size AAA */
 }
 
-.search-section { text-align: center; padding: 3rem 0; }
-.search-section h1 { color: var(--color-primary); margin-bottom: 1.5rem; }
-body.dark-mode .search-section h1 { color: var(--color-accent); }
-
-.search-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; }
-.search-form label { text-align: left; font-weight: 500; }
-.input-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.input-group input { flex: 1; min-width: 250px; padding: 0.75rem 1rem; border: 2px solid var(--color-primary); }
-
-.ads-container {
-  background-color: rgba(0,0,0,0.05); display: flex; justify-content: center;
-  align-items: center; margin: 2rem auto; overflow: hidden;
-}
-
-/* ====== MEDIA QUERIES ====== */
+/* Media Queries para Header Desktop */
 @media (min-width: 768px) {
   .menu-toggle { display: none; }
   
-  /* AQUÍ ESTÁ LA SOLUCIÓN AL BUG */
   .main-nav, .main-nav[hidden] {
-    display: block !important; /* Vence al hidden en pantallas grandes */
+    display: block !important; /* Desactiva el hidden en pantallas grandes */
     position: static;
     width: auto;
     background-color: transparent;
@@ -175,80 +156,320 @@ body.dark-mode .search-section h1 { color: var(--color-accent); }
   .nav-list { flex-direction: row; gap: 1.5rem; }
   .nav-link { border-bottom: none; padding: 0.5rem; }
 }
+
 @media (min-width: 768px) and (min-height: 600px) {
-  #main-header {
-    position: sticky; 
-    top: 0;
-  }
-  
-  .header-placeholder {
-    min-height: 128px; /* Altura original en desktop */
-  }
+  #main-header { position: sticky; top: 0; }
+  .header-placeholder { min-height: 128px; }
+  .header-container { padding: 1rem; }
+  .logo-link img { height: 50px; }
+}
 
-  .header-container {
-    padding: 1rem; /* Restauramos el respiro visual en pantallas grandes */
-  }
+/* =========================================
+   4. NUEVO HERO LAYOUT DIVIDIDO
+   ========================================= */
 
-  .logo-link img {
-    height: 50px; /* Tamaño original del logo */
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- PARTE SUPERIOR (Imagen y H1) --- */
+.hero-top-layout {
+  display: flex;
+  flex-direction: column; /* Apilado vertical en móvil */
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.hero-image-wrapper {
+  width: 100%;
+  max-width: 900px; /* Permite que la imagen crezca sin desbordar */
+  padding: 12px;
+  border-radius: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover discreto (Baja carga cognitiva) */
+.hero-image-wrapper:hover { background-color: rgba(0, 0, 0, 0.04); }
+body.dark-mode .hero-image-wrapper:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+.hero-img-responsive {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Lógica de Imágenes Claro/Oscuro con etiquetas <picture> */
+.img-light-mode { display: block; }
+.img-dark-mode { display: none; }
+
+body.dark-mode .img-light-mode { display: none; }
+body.dark-mode .img-dark-mode { display: block; }
+
+/* Contenedor del título H1 */
+.hero-title-wrapper {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); /* Tamaño dinámico fluido */
+  color: var(--color-primary);
+  margin: 0;
+  line-height: 1.1;
+}
+body.dark-mode .hero-title { color: #F5F7FA; }
+
+/* --- PARTE INFERIOR (Buscador) --- */
+.hero-bottom-layout {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 5rem; /* Separación visual para guiar el flujo de lectura */
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+body.dark-mode .hero-subtitle { color: #BBB; }
+
+/* Media Queries Hero Desktop/Landscape */
+@media (min-width: 768px), (orientation: landscape) and (max-height: 600px) {
+  .hero-top-layout {
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center; 
+  }
+  .hero-image-wrapper {
+    flex: 0 0 65%; /* Imagen ocupa el 65% de la pantalla */
+    max-width: 65%;
+  }
+  .hero-title-wrapper {
+    flex: 0 0 30%; /* Título ocupa el 30% a la derecha */
+    max-width: 30%;
+    text-align: left;
+    justify-content: flex-start;
   }
 }
 
 /* =========================================
-   FOOTER STYLES (Versión Mejorada y Accesible)
+   5. BUSCADOR Y COMPONENTES
+   ========================================= */
+
+.search-form { width: 100%; display: flex; flex-direction: column; gap: 0.5rem; }
+
+.input-group {
+  position: relative;
+  display: flex;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 1rem 1rem;
+  font-size: 1.1rem;
+  border: 2px solid transparent;
+  outline: none;
+  background: #FFF;
+  color: var(--color-primary);
+  min-width: 250px;
+}
+
+.input-group input:focus { border-color: var(--color-focus); }
+.input-group .btn-primary { border-radius: 0; padding: 1rem 2rem; font-size: 1.1rem; }
+
+body.dark-mode .input-group input {
+  background: #1A242F;
+  color: #FFF;
+  border-color: #334;
+}
+
+/* =========================================
+   6. GRILLA DE RESULTADOS (ANMAT)
+   ========================================= */
+
+.results-area { outline: none; padding-top: 1rem; }
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.result-card {
+  background: #FFF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.result-card:hover, .result-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+}
+
+body.dark-mode .result-card {
+  background: #1A242F;
+  border-color: rgba(255,255,255,0.05);
+}
+
+.med-title {
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+body.dark-mode .med-title { color: #FFF; }
+
+.med-details { margin: 0; }
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
+  padding-bottom: 0.25rem;
+}
+body.dark-mode .detail-row { border-bottom-color: rgba(255,255,255,0.1); }
+
+.detail-row dt { font-weight: 600; color: #555; }
+.detail-row dd { text-align: right; margin: 0; font-weight: 500; }
+body.dark-mode .detail-row dt { color: #AAA; }
+
+/* Etiqueta de validación */
+.badge-linea-segura {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  background: rgba(91, 176, 99, 0.15);
+  color: #2D6A32;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  width: 100%;
+  justify-content: center;
+}
+body.dark-mode .badge-linea-segura {
+  background: rgba(91, 176, 99, 0.2);
+  color: var(--color-accent);
+}
+
+/* =========================================
+   7. ESTADOS DEL SISTEMA (Loading, Errores)
+   ========================================= */
+
+.status-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  background: #FFF;
+}
+body.dark-mode .status-box { background: #1A242F; }
+.status-box h3 { margin-bottom: 0.25rem; font-size: 1.1rem; }
+.status-box p { margin: 0; color: #444; }
+body.dark-mode .status-box p { color: #CCC; }
+
+.state-loading { justify-content: center; align-items: center; }
+
+.spinner {
+  width: 24px; height: 24px;
+  border: 3px solid rgba(46,62,80,0.2);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+body.dark-mode .spinner { border-top-color: var(--color-accent); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.state-warning { border-left: 4px solid #F57F17; }
+.state-error { border-left: 4px solid #D32F2F; }
+
+/* =========================================
+   8. GOOGLE ADSENSE (Prevención CLS)
+   ========================================= */
+
+.ad-placeholder-box {
+  width: 100%;
+  min-height: 100px;
+  background: rgba(0,0,0,0.03);
+  border: 1px dashed rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+body.dark-mode .ad-placeholder-box {
+  background: rgba(255,255,255,0.02);
+  border-color: rgba(255,255,255,0.1);
+}
+@media (min-width: 768px) {
+  .ad-placeholder-box { min-height: 90px; } /* Altura reservada banner típico de desktop */
+}
+
+/* =========================================
+   9. FOOTER Y ENLACES SECUNDARIOS
    ========================================= */
 
 #main-footer {
-  background-color: var(--color-primary); /* Azul oscuro #2E3E50 */
+  background-color: var(--color-primary); 
   color: #F5F7FA;
   padding-top: 4rem; 
   margin-top: 4rem;
   font-size: 0.95rem;
 }
 
-/* Usamos CSS Grid para una estructura perfecta */
 .footer-container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr; /* 1 columna en móviles */
+  grid-template-columns: 1fr; /* Una columna por defecto en móvil */
   gap: 2.5rem;
   padding-bottom: 3rem;
 }
 
 .footer-section p {
-  line-height: 1.6;
-  opacity: 0.9;
-  margin-top: 1rem;
-  max-width: 60ch; /* Limita el ancho del texto para mejor legibilidad */
+  line-height: 1.6; opacity: 0.9; margin-top: 1rem; max-width: 60ch; 
 }
 
 .footer-title {
-  color: var(--color-accent); /* Verde accesible #5BB063 */
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  color: var(--color-accent); font-size: 1.5rem; margin-bottom: 0.5rem;
 }
 
-/* Limpieza de listas (adiós viñetas) */
 .footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;
 }
 
-/* Enlaces de navegación con contraste corregido */
 .footer-links a {
-  color: #F5F7FA; /* Sobrescribe el azul por defecto */
+  color: #F5F7FA; 
   text-decoration: none;
-  min-height: 44px; /* WCAG AAA Target Size para pantallas táctiles */
+  min-height: 44px; /* Target Size AAA */
   display: inline-flex;
   align-items: center;
   transition: color 0.2s ease, text-decoration 0.2s ease;
-  padding: 0.25rem 0; /* Área de clic más cómoda */
+  padding: 0.25rem 0;
 }
 
 .footer-links a:hover,
@@ -258,44 +479,99 @@ body.dark-mode .search-section h1 { color: var(--color-accent); }
   text-underline-offset: 4px;
 }
 
-/* Barra inferior (Copyright y Créditos) */
 .footer-bottom {
-  background-color: rgba(0, 0, 0, 0.15); /* Fondo sutilmente más oscuro para separar */
+  background-color: rgba(0, 0, 0, 0.15); 
   border-top: 1px solid rgba(245, 247, 250, 0.1);
   text-align: center;
   padding: 1.5rem 1rem;
 }
 
-.footer-bottom p {
-  margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
+.footer-bottom p { margin: 0; font-size: 0.9rem; opacity: 0.9; }
 
-/* Resaltar la autoría con buen contraste */
 .footer-bottom a {
-  color: var(--color-accent);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  color: var(--color-accent); text-decoration: none; font-weight: 600; padding: 0.3rem 0.5rem; border-radius: 4px; transition: all 0.2s ease;
 }
 
 .footer-bottom a:hover,
 .footer-bottom a:focus-visible {
-  background-color: var(--color-accent);
-  color: var(--color-primary); /* Texto oscuro sobre fondo verde al hacer hover */
+  background-color: var(--color-accent); color: var(--color-primary); 
 }
 
-/* ====== MEDIA QUERIES (Tablet y Desktop) ====== */
+/* Media Queries para Footer Desktop */
 @media (min-width: 768px) {
   .footer-container {
-    /* En pantallas grandes: 
-       Columna 1: Ocupa el doble de espacio (Texto legal largo)
-       Columna 2: Navegación
-       Columna 3: Políticas */
+    /* Columna 1 más ancha para el texto legal, columnas 2 y 3 para enlaces */
     grid-template-columns: 2fr 1fr 1fr; 
     gap: 3rem;
   }
+}
+
+/* Añadir a tu archivo style.css existente */
+
+/* Layout Superior (H1 y Hero Image) */
+.hero-top-layout {
+  display: flex;
+  flex-direction: column-reverse; /* En móvil, la imagen queda arriba del título para mejor jerarquía */
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.hero-title-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--color-primary);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+/* Imagen engrandecida */
+.hero-image-wrapper {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Bajar el buscador para obligar el scroll / permanencia */
+.hero-bottom-layout {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10rem; /* Incremental para obligar un pequeño scroll según la directiva */
+}
+
+/* Breakpoint Desktop: Invertir el layout a H1 (izq) y Foto (der) */
+@media (min-width: 1024px) {
+  .hero-top-layout {
+    flex-direction: row; /* Título izquierda, Imagen derecha */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .hero-title-wrapper {
+    flex: 0 0 35%; /* Título ocupa 35% */
+    text-align: left;
+  }
+  
+  .hero-image-wrapper {
+    flex: 0 0 60%; /* Imagen mucho más grande, ocupa 60% */
+  }
+  
+  .hero-bottom-layout {
+    margin-top: 12rem; /* Separación ampliada en desktop */
+  }
+}
+
+/* Espacios AdSense CLS-Safe */
+.ad-placeholder-box {
+  width: 100%;
+  min-height: 250px; /* Tamaño mínimo estándar de AdSense cuadrado/rectangular para evitar CLS */
+  background: rgba(0,0,0,0.03);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
