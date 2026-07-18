@@ -25,21 +25,25 @@
             <!-- GRUPO DE IMÁGENES: MODO CLARO -->
             <picture class="img-light-mode">
               <source media="(min-width: 1024px)" srcset="frontend/assets/img/RSG_Escritorio_claro.webp">
-              <source media="(min-width: 768px)" srcset="frontend/assets/img/RSG_Tablat_claro.webp">
+              <source media="(min-width: 764px)" srcset="frontend/assets/img/RSG_Tablat_claro.webp">
+              <!-- Se añade source explícito para móviles menores a 764px -->
+              <source media="(max-width: 763px)" srcset="frontend/assets/img/RSG_mobile_claro.webp">
               <img src="frontend/assets/img/RSG_mobile_claro.webp" 
                   alt="Estantería de farmacia con múltiples medicamentos desenfocados, destacando en el centro un envase nítido con el logo oficial de medicamento libre de gluten." 
                   class="hero-img-responsive" 
-                  width="900" height="500" fetchpriority="high">
+                  fetchpriority="high">
             </picture>
 
             <!-- GRUPO DE IMÁGENES: MODO OSCURO -->
             <picture class="img-dark-mode" aria-hidden="true">
               <source media="(min-width: 1024px)" srcset="frontend/assets/img/RSG_Escritorio_Osc.webp">
-              <source media="(min-width: 768px)" srcset="frontend/assets/img/RSG_Tablat_oscuro.webp">
+              <source media="(min-width: 764px)" srcset="frontend/assets/img/RSG_Tablat_oscuro.webp">
+              <!-- Se añade source explícito para móviles menores a 764px -->
+              <source media="(max-width: 763px)" srcset="frontend/assets/img/RSG_mobile_oscuro.webp">
               <img src="frontend/assets/img/RSG_mobile_oscuro.webp" 
                   alt="" 
                   class="hero-img-responsive" 
-                  width="900" height="500" loading="lazy">
+                  loading="lazy">
             </picture>
           </div>
           <div class="hero-title-wrapper">
