@@ -67,6 +67,12 @@
               <button type="submit" class="btn-primary">Consultar</button>
             </div>
           </form>
+
+          <div class="cafecito-cta" aria-label="como buscar la informacion">
+            <a href="./frontend/pages/infomedica.html" class="cafecito-link">
+              ¿Cómo buscar la información?
+            </a>
+          </div>
           <p id="ayuda-buscador" class="sr-only">Escribe el término y presiona Enter o el botón Consultar para ver si es libre de gluten.</p>
         </div>
 
@@ -76,49 +82,101 @@
     <!-- ==========================================
          2. ESPACIO ADSENSE SUPERIOR (Prevención CLS)
          ========================================== -->
-    <aside class="ads-container ads-top" aria-label="Publicidad patrocinada">
-       <div class="ad-placeholder-box">
+    <!-- <aside class="ads-container ads-top" aria-label="Publicidad patrocinada">
+       <div class="ad-placeholder-box"> -->
            <!-- Código de AdSense aquí -->
-           <span class="sr-only">Anuncio publicitario</span>
+           <!-- <span class="sr-only">Anuncio publicitario</span>
        </div>
-    </aside>
+    </aside> -->
 
     <!-- ==========================================
          3. CONTENEDORES DE RESULTADOS
          ========================================== -->
-    <div id="anuncio-resultados" aria-live="assertive" class="sr-only"></div>
-    <section id="contenedor-resultados" class="container results-area" role="region" aria-label="Resultados de la búsqueda" tabindex="-1"></section>
+    <!-- <div id="anuncio-resultados" aria-live="assertive" class="sr-only"></div>
+    <section id="contenedor-resultados" class="container results-area" role="region" aria-label="Resultados de la búsqueda" tabindex="-1"></section> -->
 
     <!-- ==========================================
          4. ESPACIO ADSENSE INFERIOR
          ========================================== -->
-    <aside class="ads-container ads-bottom" aria-label="Publicidad patrocinada">
-       <div class="ad-placeholder-box">
+    <!-- <aside class="ads-container ads-bottom" aria-label="Publicidad patrocinada">
+       <div class="ad-placeholder-box"> -->
            <!-- Código de AdSense aquí -->
-           <span class="sr-only">Anuncio publicitario</span>
+           <!-- <span class="sr-only">Anuncio publicitario</span>
        </div>
-    </aside>
+    </aside> -->
 
     <!-- ==========================================
          5. SECCIÓN E-E-A-T Y SEO
          ========================================== -->
-    <section class="info-seo-section container" aria-labelledby="seo-title">
-      <div class="info-grid">
-        <div class="info-card">
-          <h2 id="seo-title" class="h3-style">Rigor y transparencia en cada consulta</h2>
-          <p>Nuestra base de datos procesa y cruza información oficial para brindar respuestas claras. La verificación constante asegura que los pacientes y profesionales tengan acceso a datos actualizados sobre excipientes y trazabilidad de los principios activos, reduciendo el riesgo de exposición al gluten.</p>
-        </div>
-        <div class="info-card">
-          <h3 class="h3-style">Herramienta de asistencia</h3>
-          <p>Diseñada bajo estrictos estándares de accesibilidad digital (WCAG 2.2), esta plataforma agiliza la toma de decisiones en el mostrador o en el consultorio. <strong>Recordá:</strong> esta consulta no reemplaza el criterio profesional ni la lectura del prospecto vigente.</p>
-        </div>
+<section class="info-seo-section container" aria-labelledby="info-title">
+  <div class="info-grid">
+
+    <!-- Bloque 1 -->
+    <div class="info-card">
+      <h2 id="info-title" class="h3-style">Rigor y transparencia en cada consulta</h2>
+      <p>
+        Cada medicamento publicado en Remedios Sin Gluten pasa por un proceso de auditoría clínica realizado por 
+        <strong>médicos</strong>. Nuestro equipo revisa uno por uno los productos registrados en la base oficial de <strong>ANMAT</strong>        para confirmar la presencia del <strong>isologo “Libre de Gluten / Sin TACC”</strong> y detectar cualquier cambio en las fórmulas.
+      </p>
+      <p>
+        Este método de verificación manual, combinado con datos oficiales y trazabilidad de laboratorios, 
+        nos permite ofrecer información confiable, actualizada y clínicamente relevante. 
+        Así, pacientes celíacos, profesionales de la salud y farmacéuticos pueden tomar decisiones seguras 
+        con evidencia verificable y sin ambigüedades.
+      </p>
+
+      <div class="isologo-container">
+        <img src="frontend/assets/img/isologo.png" 
+             alt="Isologo oficial Sin TACC / Libre de Gluten" 
+             class="isologo-img" 
+             loading="lazy">
       </div>
-    </section>
+
+    </div>
+
+    <!-- Bloque 2 -->
+    <div class="info-card">
+      <h3 class="h3-style">Herramienta de asistencia clínica</h3>
+      <p>
+        La plataforma está diseñada bajo los estándares de accesibilidad digital <strong>WCAG 2.2</strong>, 
+        garantizando una experiencia clara, rápida y usable desde consultorios, farmacias o dispositivos móviles. 
+        La interfaz prioriza el contraste, la lectura fácil y la navegación por teclado para asegurar 
+        que la información esté disponible para todas las personas.
+      </p>
+
+      <!-- Bloque de disclaimer -->
+      <div class="info-disclaimer-box">
+        <h4 class="info-disclaimer-title">Información esencial para una consulta segura</h4>
+
+        <p>
+          La información contenida en esta plataforma tiene un propósito exclusivamente informativo y de asistencia comunitaria. 
+          <strong>Remedios Sin Gluten</strong> es una herramienta diseñada para facilitar la búsqueda de datos sobre medicamentos y su aptitud para personas celíacas, 
+          pero bajo ninguna circunstancia reemplaza ni exime de la lectura atenta del prospecto oficial adjunto en el envase de cada producto.
+        </p>
+
+        <p>
+          Asimismo, los datos proporcionados aquí no sustituyen el criterio, diagnóstico ni la prescripción de un profesional de la salud. 
+          La decisión final sobre el consumo de cualquier fármaco debe ser validada por un médico tratante, quien evaluará cada caso según la historia clínica y las necesidades individuales.
+        </p>
+
+        <p>
+          Si tenés dudas sobre la composición de un medicamento, su seguridad o su aptitud para celíacos, 
+          consultá siempre con un profesional antes de administrarlo o consumirlo. 
+          La orientación médica es indispensable para garantizar un uso adecuado y seguro.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
 
     <!-- ==========================================
          6. SECCIÓN SPONSORS DIRECTOS
          ========================================== -->
-    <section class="sponsors-section bg-light" aria-labelledby="sponsors-title">
+    <!-- <section class="sponsors-section bg-light" aria-labelledby="sponsors-title">
       <div class="container text-center">
         <h2 id="sponsors-title">Marcas aliadas de la comunidad</h2>
         <p class="sr-only">Lista de empresas e instituciones que patrocinan este proyecto.</p>
@@ -128,12 +186,12 @@
           <li class="sponsor-item"><a href="#" aria-label="Visitar sitio de Sponsor 3"><div class="sponsor-placeholder">Espacio Sponsor 3</div></a></li>
         </ul>
       </div>
-    </section>
+    </section> -->
 
     <!-- ==========================================
          7. CAPTACIÓN DE LEADS
          ========================================== -->
-    <section class="newsletter-section container" aria-labelledby="newsletter-title">
+    <!-- <section class="newsletter-section container" aria-labelledby="newsletter-title">
       <div class="newsletter-box">
         <div class="newsletter-content">
           <h2 id="newsletter-title">Alertas de actualización</h2>
@@ -147,7 +205,75 @@
           </div>
         </form>
       </div>
-    </section>
+    </section> -->
+
+    <section class="testimonios-section container" aria-labelledby="testimonios-title">
+      <h2 id="testimonios-title" class="h3-style">Experiencias de nuestra comunidad</h2>
+
+      <div class="testimonios-grid">
+
+        <!-- Testimonio 1 -->
+        <article class="testimonio-card" aria-label="Testimonio de Débora, paciente celíaca">
+          <h3 class="testimonio-nombre">Débora, 48 años – Celíaca</h3>
+          <p class="testimonio-texto">
+            “Llevaba tiempo sin entender por qué ciertos síntomas no mejoraban. Al buscar mi medicación para el mareo en 
+            <strong>Remedios Sin Gluten</strong>, descubrí que contenía gluten. Pude cambiarlo y hoy me siento mucho mejor.”
+          </p>
+        </article>
+
+        <!-- Testimonio 2 -->
+        <article class="testimonio-card" aria-label="Testimonio de Agustina, usuaria de la plataforma">
+          <h3 class="testimonio-nombre">Agustina, 46 años</h3>
+          <p class="testimonio-texto">
+            “Siempre pensé que todos los productos de un laboratorio eran libres de gluten. Gracias a la plataforma descubrí 
+            que no siempre es así, y pude elegir una opción segura.”
+          </p>
+        </article>
+
+        <!-- Testimonio 3 -->
+        <article class="testimonio-card" aria-label="Testimonio de Jessica, enfermera">
+          <h3 class="testimonio-nombre">Jessica, 30 años – Enfermera</h3>
+          <p class="testimonio-texto">
+            “Una paciente me preguntó si el medicamento que estaba por administrarle era sin gluten. 
+            Con <strong>Remedios Sin Gluten</strong> pude confirmarlo en segundos y darle tranquilidad.”
+          </p>
+        </article>
+
+      </div>
+
+      <!-- CTA final -->
+      <div class="testimonios-cta" aria-label="Compartir tu experiencia">
+        <a href="/contacto" class="testimonios-cta-link">
+          Contanos tu experiencia
+        </a>
+      </div>
+
+  </section>
+<section class="sostenibilidad-section container" aria-labelledby="sostenibilidad-title">
+  <h2 id="sostenibilidad-title" class="h3-style">Sostenibilidad del Proyecto</h2>
+
+  <p>
+    <strong>Remedios Sin Gluten</strong> es una herramienta de consulta gratuita, creada para acompañar a la comunidad celíaca 
+    y brindar información confiable basada en auditorías médicas y datos oficiales.
+  </p>
+
+  <p>
+    Mantener la plataforma en línea, sostener los estándares de accesibilidad digital y actualizar la base de datos día a día 
+    requiere tiempo, esfuerzo y recursos técnicos. Todo el trabajo de verificación —incluyendo la revisión manual de los medicamentos 
+    registrados en ANMAT para confirmar el isologo “Libre de Gluten / Sin TACC”— es realizado por profesionales comprometidos con la seguridad del paciente.
+  </p>
+
+  <p>
+    Si la plataforma te resultó útil y querés apoyar su continuidad, podés colaborar invitándonos un Cafecito.  
+    Cada aporte ayuda a que este proyecto independiente siga creciendo y mantenga su calidad.
+  </p>
+
+  <div class="cafecito-cta" aria-label="Ir a Cafecito para colaborar con el proyecto">
+    <a href="https://cafecito.app/remediosingluten" class="cafecito-link">
+      Invitarnos un Cafecito
+    </a>
+  </div>
+</section>
 
   </main>
   
