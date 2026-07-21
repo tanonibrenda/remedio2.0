@@ -1,18 +1,26 @@
+<!-- 1. BARRA SUPERIOR OSCURA (Accesibilidad) -->
 <div class="a11y-toolbar" aria-label="Herramientas de accesibilidad">
   <button id="btn-a11y-toggle" class="btn-a11y" aria-expanded="false" aria-controls="a11y-panel">
     <span class="sr-only">Abrir panel de accesibilidad</span>
     <img src="/frontend/assets/img/accesibilidad.webp" alt="" class="a11y-icon" width="24" height="24" aria-hidden="true">
-   
   </button>
   
   <div id="a11y-panel" class="a11y-panel" hidden>
-    <button id="btn-dark-mode" aria-pressed="false">Modo Oscuro</button>
-    <button id="btn-increase-font" aria-label="Aumentar tamaño de fuente">Aa+</button>
-    <button id="btn-decrease-font" aria-label="Reducir tamaño de fuente">Aa-</button>
-    <button id="btn-reset-font" aria-label="Restaurar tamaño de fuente">Aa Restablecer</button>
+    <div class="a11y-panel-header">
+      <button id="btn-a11y-close" class="a11y-btn-close" aria-label="Cerrar panel de accesibilidad">✕</button>
+    </div>
+    <button id="btn-dark-mode" class="a11y-btn-theme" aria-pressed="false">
+      <span class="theme-text">Modo Oscuro</span>
+    </button>
+    <div class="a11y-font-group" role="group" aria-label="Controles de tamaño de texto">
+      <button id="btn-decrease-font" class="a11y-btn-font" aria-label="Reducir tamaño de fuente">A-</button>
+      <button id="btn-reset-font" class="a11y-btn-font" aria-label="Restaurar tamaño original">Aa</button>
+      <button id="btn-increase-font" class="a11y-btn-font" aria-label="Aumentar tamaño de fuente">A+</button>
+    </div>
   </div>
 </div>
 
+<!-- 2. BARRA PRINCIPAL (Logo y Navegación) -->
 <div class="header-container">
   <a href="/" class="logo-link" aria-label="Volver a la página de inicio">
     <img src="/frontend/assets/img/logoRSG.png" alt="Remedios Sin Gluten" height="50">

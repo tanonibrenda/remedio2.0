@@ -476,7 +476,10 @@ body.dark-mode .ad-placeholder-box {
 .footer-links a:focus-visible {
   color: var(--color-accent);
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 2px; /* Grosor visible y sólido */
+  text-underline-offset: 5px; /* Distancia mayor para separar la línea de las palabras */
+  text-decoration-skip-ink: auto; /* Evita tachar descendentes (p, g, y, j, q) */
+  transition: all 0.2s ease;
 }
 
 .footer-bottom {
@@ -1378,4 +1381,188 @@ body.dark-mode .respuesta{
 
 background:#202A35;
 
+}
+/* C. Solución al Reflujo (WCAG 1.4.10) para Botones y CTAs */
+/* Esto corrige específicamente el error visual del botón desbordado */
+.btn-primary, 
+.btn-newsletter,
+.cafecito-link, 
+.testimonios-cta-link,
+.info-link-cta {
+  white-space: normal; /* FUNDAMENTAL: Permite que el texto baje a la siguiente línea */
+  height: auto; /* Permite el crecimiento vertical dinámico */
+  min-height: 48px; /* Estándar AAA para áreas táctiles (recomendado 48px) */
+  max-width: 100%; /* Asegura que no rompa la cuadrícula del contenedor padre */
+  line-height: 1.4; /* Espaciado interno cómodo para lectura en varias líneas */
+  text-align: center;
+  display: inline-flex;
+  flex-wrap: wrap; /* Asegura que el contenido interno pueda acomodarse */
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+}
+
+/* =========================================
+   DISEÑO MEJORADO DEL PANEL DE ACCESIBILIDAD
+   ========================================= */
+
+/* Contenedor del panel flotante */
+.a11y-panel {
+  position: absolute;
+  top: calc(100% + 8px); /* Separación sutil del header */
+  right: 1rem;
+  background-color: var(--color-bg-main);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 25px rgba(46, 62, 80, 0.15);
+  min-width: 260px;
+  z-index: 1001;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+/* Fuerza a ocultar el panel cuando JavaScript le agrega el atributo 'hidden' */
+.a11y-panel[hidden] {
+  display: none !important;
+}
+/* Estado de Modo Oscuro para el Panel */
+body.dark-mode .a11y-panel {
+  background-color: #1A242F;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Botón Principal (Modo Oscuro) --- */
+.a11y-btn-theme {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+  min-height: 48px; /* WCAG AAA */
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Efectos Hover y Focus - Botón Tema */
+.a11y-btn-theme:hover,
+.a11y-btn-theme:focus-visible {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Estado Activo (Cuando el Modo Oscuro ESTÁ encendido) */
+.a11y-btn-theme[aria-pressed="true"] {
+  background-color: var(--color-accent);
+  color: #0A1F0D; /* Verde oscuro para contraste sobre el verde acento */
+  border-color: var(--color-accent);
+}
+
+body.dark-mode .a11y-btn-theme[aria-pressed="true"]:hover,
+body.dark-mode .a11y-btn-theme[aria-pressed="true"]:focus-visible {
+  background-color: #4A9050;
+  color: #FFFFFF;
+}
+
+/* --- Grupo de Controles de Fuente --- */
+.a11y-font-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background-color: rgba(46, 62, 80, 0.05);
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+body.dark-mode .a11y-font-group {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Botones de Tipografía individuales */
+.a11y-btn-font {
+  background-color: #FFFFFF;
+  color: var(--color-primary);
+  border: 2px solid transparent; /* Reserva espacio para el focus */
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  min-height: 48px; /* WCAG AAA */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+body.dark-mode .a11y-btn-font {
+  background-color: #2E3E50;
+  color: #F5F7FA;
+}
+
+/* Efectos Hover y Focus - Botones Tipografía */
+.a11y-btn-font:hover,
+.a11y-btn-font:focus-visible {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(46, 62, 80, 0.05);
+  transform: translateY(-1px);
+}
+
+body.dark-mode .a11y-btn-font:hover,
+body.dark-mode .a11y-btn-font:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Indicador de Foco Global Reforzado (solo para teclado) */
+.a11y-panel button:focus-visible {
+  outline: 3px solid var(--color-focus) !important;
+  outline-offset: 3px !important;
+}
+/* =========================================
+   BOTÓN DE CERRAR DEL PANEL (NUEVO)
+   ========================================= */
+.a11y-panel-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -0.5rem; /* Ajuste sutil para no desarmar tu caja */
+}
+
+.a11y-btn-close {
+  background: transparent;
+  border: 2px solid transparent;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: bold;
+  min-width: 44px; /* WCAG AAA Target Size */
+  min-height: 44px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .a11y-btn-close {
+  color: #F5F7FA;
+}
+
+.a11y-btn-close:hover,
+.a11y-btn-close:focus-visible {
+  background-color: rgba(46, 62, 80, 0.1);
+  color: var(--color-focus);
+}
+
+body.dark-mode .a11y-btn-close:hover,
+body.dark-mode .a11y-btn-close:focus-visible {
+  background-color: rgba(255, 255, 255, 0.1);
 }
