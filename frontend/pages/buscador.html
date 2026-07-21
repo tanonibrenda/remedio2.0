@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Medicamentos | Remedios Sin Gluten</title>
+    <meta name="description" content="Buscador de medicamentos aptos para celíacos. Consulta por nombre genérico (droga) o comercial para verificar si contiene gluten.">
+    <!-- Rutas relativas ajustadas para estar dentro de /pages/ -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="icon" href="../assets/img/remediosingluten.ico" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Contenedor inyectado por components.js -->
+    <header id="main-header" class="header-placeholder"></header>
+
+    <main id="main-content" class="fade-in" tabindex="-1">
+        
+        <!-- ==========================================
+             SECCIÓN DE BÚSQUEDA DEDICADA
+             ========================================== -->
+        <section class="search-page-header container" aria-labelledby="search-page-title">
+            <div class="search-wrapper text-center">
+                <h1 id="search-page-title" class="h3-style">Consulta de Medicamentos</h1>
+                <p class="hero-subtitle">Ingresá la droga o la marca comercial para verificar su estado.</p>
+                
+                <!-- Formulario GET: Funciona incluso si falla JS -->
+                <form id="formulario-busqueda-principal" class="search-form" action="buscador.html" method="GET" role="search">
+                    <label for="buscador-input" class="sr-only">Término de búsqueda</label>
+                    <div class="input-group">
+                        <span class="search-icon" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </span>
+                        <input type="search" id="buscador-input" name="q" placeholder="Ej: Ibuprofeno, Tafirol..." required aria-describedby="ayuda-buscador" autocomplete="off">
+                        <button type="submit" class="btn-primary">Buscar</button>
+                    </div>
+                    <p id="ayuda-buscador" class="form-hint">Podés buscar por principio activo (ej. Paracetamol) o nombre de fantasía.</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- ESPACIO ADSENSE SUPERIOR (Prevención CLS) -->
+        <aside class="ads-container container" aria-label="Publicidad patrocinada">
+            <div class="ad-placeholder-box">
+                <!-- Código de AdSense aquí -->
+                <span class="sr-only">Anuncio publicitario superior</span>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             CONTENEDORES DE RESULTADOS (Región Live)
+             ========================================== -->
+        <div id="anuncio-resultados" aria-live="polite" class="sr-only"></div>
+        <section id="contenedor-resultados" class="container results-area" role="region" aria-label="Resultados de la búsqueda" tabindex="-1">
+            <!-- Los resultados se inyectan aquí vía JS -->
+            <div class="status-box" role="status">
+                <div class="info-icon" aria-hidden="true">💡</div>
+                <p>Esperando tu consulta. Utilizá el buscador de arriba para comenzar.</p>
+            </div>
+        </section>
+
+        <!-- ESPACIO ADSENSE INFERIOR -->
+        <aside class="ads-container container" aria-label="Publicidad patrocinada">
+            <div class="ad-placeholder-box">
+                <!-- Código de AdSense aquí -->
+                <span class="sr-only">Anuncio publicitario inferior</span>
+            </div>
+        </aside>
+
+    </main>
+  
+    <!-- Contenedor inyectado por components.js -->
+    <footer id="main-footer" class="footer-placeholder"></footer>
+
+    <script src="../js/components.js" defer></script>
+    <script src="../js/accesibilidad.js" defer></script>
+    <script src="../js/search.js" defer></script>
+</body>
+</html>

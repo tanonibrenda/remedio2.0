@@ -1096,3 +1096,170 @@ body.dark-mode .info-link-card:hover .info-link-cta { color: #FFFFFF; }
 }
 .breadcrumb a { color: var(--color-primary); font-weight: 700; }
 body.dark-mode .breadcrumb a { color: var(--color-accent); }
+
+
+/* =========================================
+   12. FORMULARIO DE CONTACTO ACCESIBLE
+   ========================================= */
+
+/* Agrupador de campos (asegura espaciado vertical sin depender de <br>) */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Etiquetas (Labels) con alto contraste */
+.form-label {
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+}
+
+body.dark-mode .form-label { 
+    color: #F5F7FA; 
+}
+
+/* Campos de entrada (Inputs, Selects, Textareas) */
+.form-control {
+    padding: 1rem;
+    border: 2px solid rgba(46, 62, 80, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #FFFFFF;
+    color: var(--color-text-main);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 48px; /* WCAG Target Size AAA (mínimo 44px, 48px es óptimo para pulgares) */
+    width: 100%; /* Asegura que ocupen todo el ancho del contenedor padre */
+}
+
+/* Adaptación de campos al Modo Oscuro */
+body.dark-mode .form-control {
+    background-color: #111820;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #E0E0E0;
+}
+
+/* Estado de Foco (Focus) - Crítico para accesibilidad por teclado */
+.form-control:focus {
+    outline: none; /* Quitamos el outline por defecto del navegador */
+    border-color: var(--color-focus); /* Borde vibrante */
+    box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.2); /* Halo exterior para mayor visibilidad */
+}
+
+/* Reglas específicas para el área de texto (Mensaje) */
+textarea.form-control {
+    resize: vertical; /* Permite al usuario estirar la caja solo hacia abajo, no a los lados (evita romper el layout) */
+    min-height: 150px; /* Área de escritura cómoda de inicio */
+}
+
+/* Textos de ayuda bajo los inputs (ej. "No compartiremos tu correo") */
+.form-hint {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 0.4rem;
+}
+
+body.dark-mode .form-hint { 
+    color: #AAA; 
+}
+
+/* Botón específico de envío dentro del formulario (ocupa 100% de la columna) */
+#form-contacto .btn-primary {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* =========================================
+   DISEÑO ESPECÍFICO PÁGINA BUSCADOR
+   ========================================= */
+.search-page-header {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.search-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(46, 62, 80, 0.05);
+}
+
+body.dark-mode .search-wrapper {
+    background: #1A242F;
+}
+
+/* =========================================
+   ESTADOS DE RESULTADO COMERCIAL (ALERTA/SEGURO)
+   ========================================= */
+.commercial-card {
+    border-left-width: 8px;
+    grid-column: 1 / -1; /* Ocupa todo el ancho si es búsqueda comercial única */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.commercial-status-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.status-icon {
+    font-size: 2rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+}
+
+/* Tarjeta Segura */
+.commercial-card.is-safe {
+    border-left-color: var(--color-accent);
+}
+.badge-safe {
+    background-color: rgba(91, 176, 99, 0.15);
+    color: #2D6A32;
+    border: 2px solid var(--color-accent);
+}
+body.dark-mode .badge-safe {
+    color: var(--color-accent);
+}
+
+/* Tarjeta Riesgo (Contiene Gluten) */
+.commercial-card.is-danger {
+    border-left-color: #D32F2F;
+}
+.badge-danger {
+    background-color: rgba(211, 47, 47, 0.1);
+    color: #B71C1C;
+    border: 2px solid #D32F2F;
+}
+body.dark-mode .badge-danger {
+    color: #EF5350;
+    background-color: rgba(211, 47, 47, 0.2);
+}
+
+.generic-header-info {
+    grid-column: 1 / -1;
+    background-color: rgba(46, 62, 80, 0.05);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+body.dark-mode .generic-header-info {
+    background-color: rgba(255,255,255,0.05);
+}

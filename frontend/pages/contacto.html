@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contacto | Remedios Sin Gluten</title>
+    <meta name="description" content="Comunicate con el equipo médico y técnico de Remedios Sin Gluten. Consultas, sugerencias o reportes sobre medicamentos aptos para celíacos en Argentina.">
+    
+    <!-- CSS principal mobile-first -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../assets/img/remediosingluten.ico" type="image/x-icon">
+
+    
+    
+</head>
+<body>
+    <!-- Contenedor inyectado por main.js (evita CLS) -->
+    <header id="main-header" class="header-placeholder"></header>
+
+    <main id="main-content" tabindex="-1">
+
+        <!-- ==========================================
+             HERO SECTION
+             ========================================== -->
+        <section class="rs-hero rs-hero--contacto container text-center">
+            <div class="hero-title-wrapper" style="margin-bottom: 2rem;">
+                <h1 class="hero-title">Contacto</h1>
+                <div class="infomedica-aclaracion">
+                    <p class="hero-subtitle">Estamos acá para escucharte. Ayudanos a mejorar la plataforma web.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ESPACIO ADSENSE SUPERIOR (Prevención CLS)
+             ========================================== -->
+        <aside class="ads-container container" aria-label="Espacio publicitario superior">
+            <div class="ad-placeholder-box">
+                <span class="sr-only">Espacio reservado para anuncio publicitario</span>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             SECCIÓN DE CONTACTO (Grilla Dividida)
+             ========================================== -->
+        <section class="info-seo-section container" aria-labelledby="contacto-title" style="margin-top: 2rem; padding-top: 0; border-top: none;">
+            <div class="info-grid">
+                
+                <!-- Columna Izquierda: Información y Propósito -->
+                <div class="info-card">
+                    <h2 id="contacto-title" class="h3-style">Comunicate con Nosotros</h2>
+                    <p>
+                        Tu participación es fundamental para mantener nuestra base de datos actualizada y segura. Si sos paciente, profesional de la salud o representás a un laboratorio, podés escribirnos para:
+                    </p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--color-text-main);">
+                        <li style="margin-bottom: 0.5rem;">Sugerir la inclusión de un nuevo medicamento certificado por ANMAT.</li>
+                        <li style="margin-bottom: 0.5rem;">Reportar cambios en los prospectos o formulaciones.</li>
+                        <li style="margin-bottom: 0.5rem;">Proponer alianzas institucionales o comerciales.</li>
+                        <li>Compartir tu experiencia utilizando la plataforma.</li>
+                    </ul>
+
+                    <div class="info-disclaimer-box" style="margin-top: 2rem;">
+                        <h3 class="info-disclaimer-title">Importante</h3>
+                        <p>
+                            No brindamos asesoramiento médico personalizado ni turnos clínicos a través de este medio. Ante cualquier síntoma adverso tras el consumo de un fármaco, acudí inmediatamente a la guardia médica más cercana.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Formulario Accesible -->
+                <div class="info-card" style="border-left-color: var(--color-accent);">
+                    <h2 class="h3-style sr-only">Formulario de Contacto</h2>
+                    
+                    <!-- Formulario procesado mediante PHP -->
+                    <form action="procesar_contacto.php" method="POST" id="form-contacto" aria-labelledby="form-contacto-title">
+                        <h3 id="form-contacto-title" style="display:none;">Envianos tu mensaje</h3>
+                        
+                        <div class="form-group">
+                            <label for="nombre" class="form-label">Nombre completo <span aria-hidden="true">*</span></label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required aria-required="true" autocomplete="name" placeholder="Ej: Juana Pérez">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo electrónico <span aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" required aria-required="true" autocomplete="email" placeholder="ejemplo@correo.com">
+                            <span id="email-hint" class="form-hint">No compartiremos tu dirección con terceros.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="asunto" class="form-label">Asunto <span aria-hidden="true">*</span></label>
+                            <select id="asunto" name="asunto" class="form-control" required aria-required="true">
+                                <option value="" disabled selected>Seleccioná un motivo...</option>
+                                <option value="Sugerir Medicamento">Sugerir Medicamento</option>
+                                <option value="Reportar Error">Reportar un Error</option>
+                                <option value="Alianza Comercial">Alianza Comercial / Publicidad</option>
+                                <option value="Otro">Otro Motivo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje" class="form-label">Tu mensaje <span aria-hidden="true">*</span></label>
+                            <textarea id="mensaje" name="mensaje" class="form-control" required aria-required="true" placeholder="Escribí acá todos los detalles..."></textarea>
+                        </div>
+
+                        <!-- Botón accesible con área táctil AAA -->
+                        <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ESPACIO ADSENSE INFERIOR (Prevención CLS)
+             ========================================== -->
+        <aside class="ads-container container" aria-label="Espacio publicitario inferior">
+            <div class="ad-placeholder-box">
+                <span class="sr-only">Espacio reservado para anuncio publicitario</span>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Contenedor inyectado por main.js -->
+    <footer id="main-footer" class="footer-placeholder"></footer>
+
+    <script src="/frontend/js/main.js" defer></script>
+    <script src="/frontend/js/components.js" defer></script>
+    <script src="/frontend/js/accesibilidad.js" defer></script>
+    <script src="/frontend/js/search.js" defer></script>
+</body>
+</html>
