@@ -941,7 +941,7 @@ body.dark-mode .isologo-img {
    toda el área es clickeable/táctil (WCAG 2.5.5 / 2.4.7 / 2.1.1)
    ========================================= */
 
-#infomedica-aclaracion {
+.infomedica-aclaracion {
   margin: 4rem ;
 }
 
