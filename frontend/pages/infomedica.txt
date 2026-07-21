@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Información Médica | Enfermedad Celíaca y Medicamentos</title>
+    <meta name="description" content="Información clínica accesible y rigurosa sobre el gluten, la enfermedad celíaca y la lectura segura de prospectos y registros de ANMAT.">
+    <!-- La ruta relativa correcta para acceder al CSS desde /pages/ -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../assets/img/remediosingluten.ico" type="image/x-icon">
+</head>
+<body>
+    <header id="main-header" class="header-placeholder"></header>
+
+    <main id="main-content" tabindex="-1">
+        <section class="rs-hero rs-hero--infomedica container text-center">
+            <div class="hero-title-wrapper" style="margin-bottom: 2rem;">
+                <h1 class="hero-title">Educación Clínica y Accesible</h1>
+                <p class="hero-subtitle">Comprendiendo la enfermedad celíaca y la seguridad farmacológica.</p>
+            </div>
+        </section>
+
+        <section class="rs-section container">
+            <header class="rs-section__header text-center" style="margin-bottom: 3rem;">
+                <h2 class="h3-style">Guías Prácticas y Seguras</h2>
+            </header>
+
+            <div class="results-grid" role="list">
+                <!-- Tarjeta 1 -->
+                <article class="result-card" role="listitem">
+                    <h3 class="med-title">1. ¿Qué es el gluten?</h3>
+                    <p class="med-details">Conjunto de proteínas presentes en trigo, cebada y centeno. En personas con celiaquía, desencadena una respuesta inmunológica que daña severamente el intestino delgado.</p>
+                </article>
+
+                <!-- Tarjeta 2 -->
+                <article class="result-card" role="listitem">
+                    <h3 class="med-title">2. El Rol del ANMAT</h3>
+                    <p class="med-details">El organismo fiscaliza los medicamentos en Argentina. Exige la rotulación clara del isologo "Libre de Gluten" en fármacos que han comprobado su inocuidad cruzada en laboratorios.</p>
+                </article>
+
+                <!-- Tarjeta 3 -->
+                <article class="result-card" role="listitem">
+                    <h3 class="med-title">3. Seguridad en RSG</h3>
+                    <p class="med-details">Nuestra plataforma organiza la información mediante revisión cruzada de fuentes oficiales. No reemplaza el consejo médico presencial ni la lectura del prospecto físico.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ESPACIO ADSENSE MEDIO -->
+        <!-- <aside class="ads-container container" aria-label="Espacio publicitario">
+            <div class="ad-placeholder-box"> -->
+                <!-- Google AdSense Code -->
+            <!-- </div>
+        </aside> -->
+
+        <!-- Contenido Médico Extendido -->
+        <section class="info-seo-section container">
+            <article class="info-card">
+                <h2 class="h3-style">Complicaciones de la Enfermedad Celíaca no tratada</h2>
+                <p>La adherencia estricta a la dieta y a la medicación segura es vital. Sin un diagnóstico temprano o tratamiento riguroso, la enfermedad puede derivar en mala absorción de nutrientes, comprometiendo la salud sistémica a través de cuadros de anemia severa u osteopenia.</p>
+                <p><em>Toda intervención dietética o modificación farmacológica debe ser consensuada y monitoreada por su médico especialista.</em></p>
+            </article>
+        </section>
+    </main>
+
+    <footer id="main-footer" class="footer-placeholder"></footer>
+
+    <script src="../js/main.js" defer></script>
+</body>
+</html>
