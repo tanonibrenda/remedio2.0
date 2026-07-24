@@ -1,0 +1,217 @@
+:root {
+    --primary-dark: #2E3E50;
+    --accent-accessible: #5BB063;
+    --bg-text: #F5F7FA;
+    --text-dark: #1A252F;
+    --error-color: #D32F2F;
+    --focus-ring: 3px solid var(--accent-accessible);
+}
+
+/* Reset y tipografía optimizada para dislexia */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif; /* Tipografía limpia */
+    line-height: 1.6;
+    letter-spacing: 0.05em; /* Facilita la lectura */
+    background-color: var(--bg-text);
+    color: var(--text-dark);
+}
+
+/* Foco visible estricto (WCAG AA/AAA) */
+*:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* --- Layout Login --- */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.auth-box {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* --- Formularios --- */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
+}
+
+input {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Tamaños táctiles mínimos (44x44px min) */
+button {
+    min-height: 44px; 
+    min-width: 44px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-dark);
+    color: #fff;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #1a252f;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--text-dark);
+    color: var(--text-dark);
+}
+
+/* --- Layout Panel Admin --- */
+.admin-header {
+    background-color: var(--primary-dark);
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    overflow-x: auto; /* Scroll horizontal en móvil */
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tab {
+    background: none;
+    border: none;
+    color: var(--primary-dark);
+    border-bottom: 4px solid transparent;
+    border-radius: 0;
+    white-space: nowrap;
+}
+
+.nav-tab.active {
+    border-bottom-color: var(--accent-accessible);
+    font-weight: bold;
+}
+
+.admin-content {
+    padding: 1.5rem;
+}
+
+/* --- Tarjetas de Estadísticas --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-left: 5px solid var(--accent-accessible);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* --- Tablas Accesibles --- */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.data-table th, .data-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table th {
+    background-color: var(--primary-dark);
+    color: #fff;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Breakpoint para pantallas grandes (Desktop) */
+@media (min-width: 768px) {
+    .admin-layout {
+        flex-direction: row;
+        min-height: calc(100vh - 60px);
+    }
+    .sidebar {
+        width: 250px;
+        border-right: 1px solid #ddd;
+        border-bottom: none;
+    }
+    .sidebar ul {
+        flex-direction: column;
+    }
+    .nav-tab {
+        width: 100%;
+        text-align: left;
+        border-bottom: none;
+        border-left: 4px solid transparent;
+    }
+    .nav-tab.active {
+        border-left-color: var(--accent-accessible);
+        background-color: #f0f0f0;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
